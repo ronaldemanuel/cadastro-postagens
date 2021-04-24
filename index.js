@@ -13,6 +13,11 @@ const Sequelize = require('sequelize')
             dialect: "mysql"
         })
 
+// Rotas
+    app.get('/cadastro', (req, res) => {
+        res.render('formulario')
+    })
+
 app.listen(3000, () => {
     console.log('Servidor rodando na url https://localhost:3000')
 })
