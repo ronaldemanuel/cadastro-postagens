@@ -12,6 +12,12 @@ const Post = require('./models/Post')
         app.use(express.json())
 
 // Rotas
+    app.get('/', (req, res) => {
+        Post.findAll({order: [['id', 'DESC']]}).then((posts) => {
+            res.render('home', {posts: posts})
+        })
+    })
+
     app.get('/cadastro', (req, res) => {
         res.render('formulario')
     })
@@ -21,9 +27,21 @@ const Post = require('./models/Post')
             titulo: req.body.title,
             conteudo: req.body.content
         }).then(() => {
-            res.send('Post criado com sucesso')
+            res.redirect('/')
         }).catch((error) => {
             res.send('Houve um erro: ' + error)
+        })
+    })
+
+    app.get('/deletar/:id', (req, res) => {
+        Post.destroy({
+            where: {
+                'id': req.params.id
+            }
+        }).then(() => {
+            res.redirect('/')
+        }).catch((error) => {
+            res.send('post não encontrado')
         })
     })
 

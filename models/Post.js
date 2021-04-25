@@ -2,11 +2,14 @@ const db = require('./db')
 
 const Post = db.sequelize.define('Postagens', {
     titulo: {
-        type: db.Sequelize.STRING
+        type: db.DataTypes.STRING
     },
     conteudo: {
-        type: db.Sequelize.TEXT
+        type: db.DataTypes.TEXT,
+        allowNull: false
     }
 })
+
+// Post.sync({force: true})
 
 module.exports = Post

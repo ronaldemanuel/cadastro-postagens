@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize, DataTypes} = require('sequelize')
 
 // Connection with Mysql database
     const sequelize = new Sequelize('cadastro_postagens', 'root', 'ronald123', {
@@ -7,6 +7,6 @@ const Sequelize = require('sequelize')
     })
 
 module.exports = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
+    sequelize: sequelize,
+    DataTypes: DataTypes
 }
